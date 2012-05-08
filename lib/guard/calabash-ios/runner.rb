@@ -4,6 +4,8 @@ module Guard
     attr_accessor :sdk
     attr_accessor :device
     def initialize(options)
+      devices = [:iphone, :ipad]
+      sdks = [:ios4, :ios5]
       if options[:project].nil?
         project = Dir.glob("*.xcodeproj").first
         if project
@@ -13,7 +15,14 @@ module Guard
         end
       end
       self.bundle_path = bundle(options)
-      self.sdk = options[:sdk]
+      self.sdk =:ios5
+      if sdks.include? options[:sdk]
+        self.sdk = options[:sdk]
+      end
+      self.device = :iphone
+      if devices.include? options[:device]
+        self.device = options[:device]
+      end
     end
 
     def run(features)
@@ -35,7 +44,7 @@ module Guard
       if features.kind_of? Array
         features = features.join(' ')
       end
-      "APP_BUNDLE_PATH='#{self.bundle_path}' OS=#{self.sdk} cucumber #{features} --require features"
+      "APP_BUNDLE_PATH='#{self.bundle_path}' OS=#{self.sdk} DEVICE=#{self.device} cucumber #{features} --require features"
     end
 
     def bundle(options)

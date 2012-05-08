@@ -22,5 +22,6 @@ When you're done, run following commands from project directory
 
 ## Guard options
 
-TODO
+	all_on_start - run all specs at first start, by default *true*
+	device - iphone or ipad, by default *:iphone*
 
