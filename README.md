@@ -1,25 +1,26 @@
-# Guard::Frank
+# Guard::CalabashiOS
 
-Guard gem for [Frank-Cucumber](http://www.testingwithfrank.com/).    
-Guard::Frank automatically run your frank-cucumber features for iOS.    
+Guard gem for [Calabash-ios](https://github.com/calabash/calabash-ios).
+Guard::CalabashiOS automatically run your cucumber features for iOS.
 
 ## Installation
 
-    $ gem install guard-frank
+    $ gem install guard-calabash-ios
 
 ## Usage
 
-Add support of the frank-cucumber to your project as [described](http://www.testingwithfrank.com/installing.html).    
+Add support of the calabash to your project
+as [described](https://github.com/calabash/calabash-ios/wiki/01-Getting-started-guide).
 Then go to the Xcode settings and setup Derived Data as Relative.
 
 ![Xcode locations](https://github.com/AlexDenisov/guard-frank/blob/master/locations.png?raw=true).
 
-When you're done, run following commands from project_path/Frank directory
+When you're done, run following commands from project directory
 
-    $ guard init frank
+    $ guard init calabash-ios
     $ guard
 
-Note that Frank needs to know which target of project you want to test.     
-So after initilizing frank you need modify Guardfile, if neccessary.     
-By default Guard::Frank trying to test 'frankified' target.     
+## Guard options
+
+TODO
 
