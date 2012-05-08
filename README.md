@@ -1,7 +1,7 @@
 # Guard::CalabashiOS
 
-Guard gem for [Calabash-ios](https://github.com/calabash/calabash-ios).
-Guard::CalabashiOS automatically run your cucumber features for iOS.
+Guard gem for [Calabash-ios](https://github.com/calabash/calabash-ios).    
+Guard::CalabashiOS automatically run your cucumber features for iOS.    
 
 ## Installation
 
@@ -10,7 +10,7 @@ Guard::CalabashiOS automatically run your cucumber features for iOS.
 ## Usage
 
 Add support of the calabash to your project
-as [described](https://github.com/calabash/calabash-ios/wiki/01-Getting-started-guide).
+as [described](https://github.com/calabash/calabash-ios/wiki/01-Getting-started-guide).    
 Then go to the Xcode settings and setup Derived Data as Relative.
 
 ![Xcode locations](https://github.com/AlexDenisov/guard-frank/blob/master/locations.png?raw=true).
