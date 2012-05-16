@@ -1,11 +1,10 @@
 require 'guard'
 require 'guard/guard'
 require 'guard/notifier'
+require 'guard/calabash-ios/runner'
 
 module Guard
   class CalabashiOS < Guard
-
-    autoload :Runner, 'guard/calabash-ios/runner'
 
     # Initialize a Guard.
     # @param [Array<Guard::Watcher>] watchers the Guard file watchers

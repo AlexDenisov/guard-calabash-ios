@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Guard gem for calabash-ios}
   gem.homepage      = "https://github.com/AlexDenisov/guard-calabash-ios"
   gem.files         = Dir.glob('{lib}/**/*') + %w[LICENSE README.md]
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+ # gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
+ # gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "guard-calabash-ios"
   gem.require_paths = ["lib"]
   gem.version       = Guard::CalabashiOSVersion::VERSION
