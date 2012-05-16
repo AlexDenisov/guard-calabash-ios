@@ -17,4 +17,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'calabash-cucumber'
   gem.required_ruby_version     = '>= 1.8.7'
   gem.required_rubygems_version = '>= 1.3.6'
+  gem.post_install_message = %{
+    See https://github.com/AlexDenisov/guard-calabash-ios#readme for more details
+  }
 end
