@@ -3,25 +3,63 @@ module Guard
     attr_accessor :bundle_path
     attr_accessor :sdk
     attr_accessor :device
+    attr_accessor :project
+    attr_accessor :target
+    attr_accessor :config
     def initialize(options)
-      devices = [:iphone, :ipad]
+      self.sdk = init_sdk(options)
+      self.device = init_device(options)
+      self.project = init_project(options)
+      self.target = init_target(options)
+      self.config = init_config(options)
+      self.bundle_path = init_bundle_path(options)
+    end
+
+    def init_sdk(options)
       sdks = [:ios4, :ios5]
-      if options[:project].nil?
-        project = Dir.glob("*.xcodeproj").first
-        if project
-          options[:project] = project.gsub(".xcodeproj","")
-        else
-          UI.info "You must specify project name at your Guardfile."
-        end
-      end
-      self.bundle_path = bundle(options)
-      self.sdk =:ios5
       if sdks.include? options[:sdk]
-        self.sdk = options[:sdk]
+        options[:sdk]
+      else
+        :ios5
       end
-      self.device = :iphone
+    end
+
+    def init_device(options)
+      devices = [:iphone, :ipad]
       if devices.include? options[:device]
-        self.device = options[:device]
+        options[:device]
+      else
+        :iphone
+      end
+    end
+
+    def init_project(options)
+      if options[:project].nil?
+        xproject = Dir.glob("*.xcodeproj").first
+        if xproject
+          xproject.gsub(".xcodeproj","")
+        else
+          UI.info "Could not find project"
+          nil
+        end
+      else
+        options[:project]
+      end
+    end
+
+    def init_config(options)
+      if options[:config].nil?
+        "Debug"
+      else
+        options[:config]
+      end
+    end
+
+    def init_target(options)
+      if options[:target].nil?
+        "#{self.project}-cal"
+      else
+        options[:target]
       end
     end
 
@@ -30,7 +68,7 @@ module Guard
         UI.info "Could not run Calabash. \n'#{self.bundle_path}' not found."
         return false
       end
-      if features.eql?("features")
+      if features.eql?("features") or features.empty?
         start_message = "Run all features"
       else
         features = features.join(' ') if features.kind_of? Array
@@ -44,15 +82,22 @@ module Guard
       if features.kind_of? Array
         features = features.join(' ')
       end
-      "APP_BUNDLE_PATH='#{self.bundle_path}' OS=#{self.sdk} DEVICE=#{self.device} cucumber #{features} --require features"
+      cmd = []
+      cmd << "APP_BUNDLE_PATH='#{self.bundle_path}'"
+      cmd << "OS=#{self.sdk}"
+      cmd << "DEVICE=#{self.device}"
+      cmd << "cucumber #{features} --require features"
+      cmd.join ' '
     end
 
-    def bundle(options)
-      pwd = Dir::pwd
-      project = options[:project]
-      target = options[:target] || "frankified"
-      config = options[:config] || "Debug"
-      bundle_path = "#{pwd}/DerivedData/#{project}/Build/Products/#{config}-iphonesimulator/#{project}-cal.app"
+    def init_bundle_path(options)
+      path = []
+      path << "#{Dir::pwd}/DerivedData/"
+      path << "#{self.project}/"
+      path << "Build/Products/"
+      path << "#{self.config}-iphonesimulator/"
+      path << "#{self.target}.app"
+      path.join
     end
   end
 end
