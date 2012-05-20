@@ -22,6 +22,10 @@ When you're done, run following commands from project directory
 
 ## Guard options
 
-	all_on_start - run all specs at first start, by default *true*
-	device - iphone or ipad, by default *:iphone*
+	all_on_start - run all specs at first start, by default true
+	device - iphone or ipad, by default :iphone
+	project - project name, if not set, then gem will try to find it by *.xcodeproject expression
+	sdk - ios4, ios5, by default :ios5
+	target - calabash target, by default $project-cal
+	config - Debug/Release, by default Debug
 
