@@ -64,7 +64,7 @@ module Guard
     end
 
     def run(features)
-      unless File.exists? self.bundle_path
+      unless File.exists? self.bundle_path.to_s
         UI.info "Could not run Calabash. \n'#{self.bundle_path}' not found."
         return false
       end
