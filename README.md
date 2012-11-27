@@ -28,4 +28,5 @@ When you're done, run following commands from project directory
 	sdk - ios4, ios5, by default :ios5
 	target - calabash target, by default $project-cal
 	config - Debug/Release, by default Debug
-
+  no_launch - don't automaticaly launch simulator, by default false. *Note: This is a new feature from version 0.9.48*
+  reset_between_scenarios - reset app data between scenarios, by default false
