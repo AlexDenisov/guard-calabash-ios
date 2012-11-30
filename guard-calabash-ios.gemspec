@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Guard::CalabashiOSVersion::VERSION
   gem.add_dependency 'guard', '<1.1.0'
-  gem.add_dependency 'calabash-cucumber'
+  gem.add_dependency 'calabash-cucumber', '>= 0.9.48'
   gem.required_ruby_version     = '>= 1.8.7'
   gem.required_rubygems_version = '>= 1.3.6'
   gem.post_install_message = %{

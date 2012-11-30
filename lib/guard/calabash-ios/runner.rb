@@ -6,12 +6,16 @@ module Guard
     attr_accessor :project
     attr_accessor :target
     attr_accessor :config
+    attr_accessor :no_launch
+    attr_accessor :reset_between_scenarios
     def initialize(options)
       self.sdk = init_sdk(options)
       self.device = init_device(options)
       self.project = init_project(options)
       self.target = init_target(options)
       self.config = init_config(options)
+      self.no_launch = init_no_launch(options)
+      self.reset_between_scenarios = init_reset_between_scenarios(options)
       self.bundle_path = init_bundle_path(options)
     end
 
@@ -54,6 +58,24 @@ module Guard
         options[:config]
       end
     end
+    
+    def init_no_launch(options)
+      case options[:no_launch]
+      when true
+        1
+      when false
+        0
+      end
+    end
+
+    def init_reset_between_scenarios(options)
+      case options[:reset_between_scenarios]
+      when true
+        1
+      when false
+        0
+      end
+    end
 
     def init_target(options)
       if options[:target].nil?
@@ -86,7 +108,9 @@ module Guard
       cmd << "APP_BUNDLE_PATH='#{self.bundle_path}'"
       cmd << "OS=#{self.sdk}"
       cmd << "DEVICE=#{self.device}"
-      cmd << "cucumber #{features} --require features"
+      cmd << "NO_LAUNCH=#{self.no_launch}" if self.no_launch
+      cmd << "RESET_BETWEEN_SCENARIOS=#{self.reset_between_scenarios}" if self.reset_between_scenarios
+      cmd << "cucumber #{features} --require features"      
       cmd.join ' '
     end
 
